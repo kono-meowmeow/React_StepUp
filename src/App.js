@@ -3,6 +3,7 @@ import { ChildArea } from "./ChildArea";
 import "./styles.css";
 
 export default function App() {
+  console.log("Appがレンダリングされた！");
   const [text, setText] = useState('');
   const [open, setOpen] = useState(false);
 
