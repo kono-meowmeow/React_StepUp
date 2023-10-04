@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const style = {
   width: "100%",
   height: "200px",
@@ -5,8 +7,15 @@ const style = {
 };
 
 // 親コンポーネントから渡されたpropsを引数に受け取る
-export const ChildArea = (props) => {
+// memoを使うことで、このコンポーネントはpropsが更新されない限り再レンダリングされない
+export const ChildArea = memo((props) => {
   const { open } = props;
+  console.log("ChildAreaがレンダリングされた！！");
+
+  const data = [...Array(2000).keys()];
+  data.forEach(() => {
+    console.log("...");
+  });
   return (
     <>
       {open ? (
@@ -16,4 +25,9 @@ export const ChildArea = (props) => {
       ) : null}
     </>
   );
-};
+});
+
+// 再レンダリングが起きる条件
+// 1. stateが更新されたコンポーネントは再レンダリングされる
+// 2. propsが更新されたコンポーネントは再レンダリングされる
+// 3. 再レンダリングされたコンポーネント配下のコンポーネントも再レンダリングされる
