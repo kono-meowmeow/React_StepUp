@@ -25,7 +25,7 @@ export default function App() {
 
   // useMemoは、変数自体をmemo化する
   // useMemoは、第二引数に依存配列を渡すことで、依存配列の値が変わったときだけ、関数を再生成する
-  // 依存配列の値が変わった時だけ、再計算するというような処理に使う 
+  // 依存配列の値が変わった時だけ、再計算するというような処理に使う
   const temp = useMemo(() => 1 + 3, []);
   console.log(temp);
 
