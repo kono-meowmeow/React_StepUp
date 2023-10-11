@@ -1,4 +1,4 @@
-// dart-sassを使用する
+// sassを使用する
 import classes from "./CssModules.module.scss";
 
 export const CssModules = () => {
