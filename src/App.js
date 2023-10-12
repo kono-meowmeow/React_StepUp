@@ -1,11 +1,17 @@
 import { useState, useCallback, useMemo } from "react";
 import { ChildArea } from "./ChildArea";
+
 import { CssModules } from "./components/CssModules";
 import { InlineStyle } from "./components/InlineStyle";
 import { StyledComponents } from "./components/StyledComponents";
 import { StyledJsx } from "./components/StyledJsx";
 import { Emotion } from "./components/Emotion"
 import "./styles.css";
+
+import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
+import { Home } from "./Home";
+import { Page1 } from "./Page1";
+import { Page2 } from "./Page2";
 
 export default function App() {
   console.log("Appがレンダリングされた！");
@@ -35,23 +41,44 @@ export default function App() {
   console.log(temp);
 
   return (
-    <div className="App">
-      <input value={text} onChange={onChangeText} />
-      <br />
-      <br />
-      <button onClick={onClickOpen}>表示</button>
-      <ChildArea open={open} onClickClose={onClickClose} />
-      <br />
-      <br />
-      <InlineStyle />
-      <br />
-      <CssModules />
-      <br />
-      <StyledJsx />
-      <br />
-      <StyledComponents />
-      <br />
-      <Emotion />
-    </div>
+    // BrowserRouterで囲むことで、ルーティングが可能になる
+    <BrowserRouter>
+      <div className="App">
+        <input value={text} onChange={onChangeText} />
+        <br />
+        <br />
+        <button onClick={onClickOpen}>表示</button>
+        <ChildArea open={open} onClickClose={onClickClose} />
+        <br />
+        <br />
+        <InlineStyle />
+        <br />
+        <CssModules />
+        <br />
+        <StyledJsx />
+        <br />
+        <StyledComponents />
+        <br />
+        <Emotion />
+        <br />
+        <br />
+        {/* Linkを使うことでルーティングする */}
+        {/* <Link to="path">hoge</Link> */}
+        <Link to="/">Home</Link>
+        <br />
+        <Link to="/page1">Page1</Link>
+        <br />
+        <Link to="/page2">Page2</Link>
+      </div>
+      {/* 下記は、react-router-dom v6での記述方法 */}
+      {/* Routesの中に、Routeを記述する */}
+      <Routes>
+        {/* Routeの中に、どのpathでどのcomponentを表示するのかを記述する */}
+        {/* <Route path="path" element={<hoge />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/page1" element={<Page1 />} />
+        <Route path="/page2" element={<Page2 />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
