@@ -11,6 +11,8 @@ import "./styles.css";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { Home } from "./Home";
 import { Page1 } from "./Page1";
+import { Page1DetailA } from "./Page1DetailA";
+import { Page1DetailB } from "./Page1DetailB";
 import { Page2 } from "./Page2";
 
 export default function App() {
@@ -76,7 +78,12 @@ export default function App() {
         {/* Routeの中に、どのpathでどのcomponentを表示するのかを記述する */}
         {/* <Route path="path" element={<hoge />} /> */}
         <Route path="/" element={<Home />} />
-        <Route path="/page1" element={<Page1 />} />
+        {/* ネストさせる */}
+        <Route path="/page1">
+          <Route index={true} element={<Page1 />} />
+          <Route path="/page1/detailA" element={<Page1DetailA />} />
+          <Route path="/page1/detailB" element={<Page1DetailB />} />
+        </Route>
         <Route path="/page2" element={<Page2 />} />
       </Routes>
     </BrowserRouter>
