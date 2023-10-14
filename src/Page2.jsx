@@ -7,7 +7,7 @@ export const Page2 = () => {
       {/* 実際は、jsでURLを動的に生成することが多い */}
       <Link to="/page2/100">URL Parameter</Link>
       <br />
-      <Link to="/page2/100?name=hogehoge">Query Parameter</Link>
+      <Link to="/page2/999?name=hogehoge">Query Parameter</Link>
     </div>
   );
 };
