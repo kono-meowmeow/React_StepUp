@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Page1 = () => {
   const arr = [...Array(100).keys()];
   console.log(arr);
+
+  // useNavigate()を使うことで、jsでのページ遷移が可能になる
+  const navigate = useNavigate();
+  const onClickDetailA = () => navigate("/page1/detailA")
+
   return (
     <>
       <div>
@@ -12,6 +17,8 @@ export const Page1 = () => {
         <Link to="/page1/detailA" state={arr}>DetailA</Link>
         <br />
         <Link to="/page1/detailB">DetailB</Link>
+        <br />
+        <button onClick={onClickDetailA}>DetailA</button>
       </div>
     </>
   );
