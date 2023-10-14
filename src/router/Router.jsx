@@ -2,10 +2,8 @@
 
 import { Route, Routes } from "react-router-dom";
 import { Home } from "../Home";
-import { Page1 } from "../Page1";
 import { Page1Layout } from "../Page1Layout";
-import { Page1DetailA } from "../Page1DetailA";
-import { Page1DetailB } from "../Page1DetailB";
+import { page1Routes } from "./Page1Routes";
 import { Page2 } from "../Page2";
 
 export const Router = () => {
@@ -19,9 +17,13 @@ export const Router = () => {
         <Route path="/" element={<Home />} />
         {/* ネストさせる */}
         <Route path="/page1" element={<Page1Layout />}>
-          <Route index={true} element={<Page1 />} />
-          <Route path="/page1/detailA" element={<Page1DetailA />} />
-          <Route path="/page1/detailB" element={<Page1DetailB />} />
+          {/* <Route path="" index={true} element={<Page1 />} />
+          <Route path="/page1/detailA" index={false} element={<Page1DetailA />} />
+          <Route path="/page1/detailB" index={false} element={<Page1DetailB />} /> */}
+          {/* 上記コードを別ファイルに書いて、下のように展開する。 */}
+          {page1Routes.map((route) => (
+            <Route key={route.path} path={route.path} index={route.index} element={route.element} />
+          ))}
         </Route>
         <Route path="/page2" element={<Page2 />} />
       </Routes>
