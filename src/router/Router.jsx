@@ -6,6 +6,7 @@ import { Page1Layout } from "../Page1Layout";
 import { page1Routes } from "./Page1Routes";
 import { Page2Layout } from "../Page2Layout";
 import { page2Routes } from "./Page2Routes";
+import { Page404 } from "../Page404";
 
 export const Router = () => {
   return (
@@ -32,6 +33,8 @@ export const Router = () => {
             <Route key={route.path} path={route.path} index={route.index} element={route.element} />
           ))}
         </Route>
+        {/* 存在しないURLにアクセスしたら404に遷移するようにする */}
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </>
   );
