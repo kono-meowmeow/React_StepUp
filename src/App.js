@@ -1,11 +1,15 @@
 import { useState, useCallback, useMemo } from "react";
 import { ChildArea } from "./ChildArea";
+
 import { CssModules } from "./components/CssModules";
 import { InlineStyle } from "./components/InlineStyle";
 import { StyledComponents } from "./components/StyledComponents";
 import { StyledJsx } from "./components/StyledJsx";
 import { Emotion } from "./components/Emotion"
 import "./styles.css";
+
+import { BrowserRouter, Link } from "react-router-dom";
+import { Router } from "./router/Router";
 
 export default function App() {
   console.log("Appがレンダリングされた！");
@@ -35,23 +39,37 @@ export default function App() {
   console.log(temp);
 
   return (
-    <div className="App">
-      <input value={text} onChange={onChangeText} />
-      <br />
-      <br />
-      <button onClick={onClickOpen}>表示</button>
-      <ChildArea open={open} onClickClose={onClickClose} />
-      <br />
-      <br />
-      <InlineStyle />
-      <br />
-      <CssModules />
-      <br />
-      <StyledJsx />
-      <br />
-      <StyledComponents />
-      <br />
-      <Emotion />
-    </div>
+    // BrowserRouterで囲むことで、ルーティングが可能になる
+    <BrowserRouter>
+      <div className="App">
+        <input value={text} onChange={onChangeText} />
+        <br />
+        <br />
+        <button onClick={onClickOpen}>表示</button>
+        <ChildArea open={open} onClickClose={onClickClose} />
+        <br />
+        <br />
+        <InlineStyle />
+        <br />
+        <CssModules />
+        <br />
+        <StyledJsx />
+        <br />
+        <StyledComponents />
+        <br />
+        <Emotion />
+        <br />
+        <br />
+        {/* Linkを使うことでルーティングする */}
+        {/* <Link to="path">hoge</Link> */}
+        <Link to="/">Home</Link>
+        <br />
+        <Link to="/page1">Page1</Link>
+        <br />
+        <Link to="/page2">Page2</Link>
+      </div>
+      {/* Routerコンポーネントを呼び出す */}
+      <Router />
+    </BrowserRouter>
   );
 }
