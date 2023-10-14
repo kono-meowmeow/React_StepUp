@@ -8,13 +8,8 @@ import { StyledJsx } from "./components/StyledJsx";
 import { Emotion } from "./components/Emotion"
 import "./styles.css";
 
-import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
-import { Home } from "./Home";
-import { Page1Layout } from "./Page1Layout";
-import { Page1 } from "./Page1";
-import { Page1DetailA } from "./Page1DetailA";
-import { Page1DetailB } from "./Page1DetailB";
-import { Page2 } from "./Page2";
+import { BrowserRouter, Link } from "react-router-dom";
+import { Router } from "./router/Router";
 
 export default function App() {
   console.log("Appがレンダリングされた！");
@@ -73,20 +68,8 @@ export default function App() {
         <br />
         <Link to="/page2">Page2</Link>
       </div>
-      {/* 下記は、react-router-dom v6での記述方法 */}
-      {/* Routesの中に、Routeを記述する */}
-      <Routes>
-        {/* Routeの中に、どのpathでどのcomponentを表示するのかを記述する */}
-        {/* <Route path="path" element={<hoge />} /> */}
-        <Route path="/" element={<Home />} />
-        {/* ネストさせる */}
-        <Route path="/page1" element={<Page1Layout />}>
-          <Route index={true} element={<Page1 />} />
-          <Route path="/page1/detailA" element={<Page1DetailA />} />
-          <Route path="/page1/detailB" element={<Page1DetailB />} />
-        </Route>
-        <Route path="/page2" element={<Page2 />} />
-      </Routes>
+      {/* Routerコンポーネントを呼び出す */}
+      <Router />
     </BrowserRouter>
   );
 }
