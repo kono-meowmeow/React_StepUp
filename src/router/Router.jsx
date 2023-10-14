@@ -22,6 +22,7 @@ export const Router = () => {
           <Route path="/page1/detailB" index={false} element={<Page1DetailB />} /> */}
           {/* 上記コードを別ファイルに書いて、下のように展開する。 */}
           {page1Routes.map((route) => (
+            // keyは一意性を持たせるために必要
             <Route key={route.path} path={route.path} index={route.index} element={route.element} />
           ))}
         </Route>
